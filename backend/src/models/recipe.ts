@@ -5,7 +5,7 @@ const recipeSchema = new Schema({
     category: {type: String, required: true},
     cuisine: {type: String, required: true},
     total_reviews: {type: Number},
-    average_rating: {type:Number },
+    average_rating: {type: Number },
 }, {timestamps: true});
 
 type Recipe = InferSchemaType<typeof recipeSchema>;
