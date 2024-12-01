@@ -41,7 +41,7 @@ interface CreateRecipeBody {
     average_rating?: number,    
 };
 
-export const createRecipes: RequestHandler<unknown, unknown, CreateRecipeBody, unknown> = async(req, res, next) => {
+export const createRecipe: RequestHandler<unknown, unknown, CreateRecipeBody, unknown> = async(req, res, next) => {
     const title = req.body.title;
     const category = req.body.category;
     const cuisine = req.body.cuisine;

@@ -1,24 +1,36 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Button } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Recipe as RecipeModel } from './models/recipe';
+import Recipe from './components/recipes';
+import { Container, Row, Col } from 'react-bootstrap';
+import styles from "./styles/RecipesPage.module.css";
+import * as RecipesApi from "./network/recipes_api";
 
 function App() {
-  const [clickCount, setClickCount] = useState(0);
+  const [recipes, setRecipes] = useState<RecipeModel[]>([]);
 
+  useEffect(() => {
+    async function loadRecipes() {
+      try {
+        const recipes = await RecipesApi.fetchNotes();
+        setRecipes(recipes);
+      } catch (error) {
+        console.log(error);
+        alert(error);
+      }      
+    }
+    loadRecipes();
+  }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello World
-        </p>
-        <Button onClick={() => setClickCount(clickCount + 1)}>
-          Clicked {clickCount} times
-        </Button>
-      </header>
-    </div>
+    <Container>
+      <Row xs={1} md={2} xl={3} className = "g-4">
+      {recipes.map(recipe => (
+        <Col key={recipe._id}>
+        <Recipe recipe={recipe} className={styles.recipe}/>
+        </Col>
+      ))}
+      </Row>
+    </Container>
   );
 }
 

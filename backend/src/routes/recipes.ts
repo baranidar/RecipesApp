@@ -7,7 +7,7 @@ router.get("/", RecipesController.getRecipes);
 
 router.get("/:recipeId", RecipesController.getRecipe)
 
-router.post("/", RecipesController.createRecipes);
+router.post("/", RecipesController.createRecipe);
 
 router.patch("/:recipeId", RecipesController.updateRecipe);
 
