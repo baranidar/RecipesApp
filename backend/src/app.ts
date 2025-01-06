@@ -17,7 +17,7 @@ app.use((req, res, next) => {  // middleware to routes not found.
 })
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-app.use((error:unknown, req:Request, res:Response, next:NextFunction) => { // middleware to handle errorss
+app.use((error:unknown, req:Request, res:Response, next:NextFunction) => { // middleware to handle errors
     console.error(error);
     let errorMessage = "An unknown error has happened";
     let statusCode = 500;

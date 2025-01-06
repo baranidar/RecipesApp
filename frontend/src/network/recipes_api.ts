@@ -11,7 +11,7 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
     }
 }
 
-export async function fetchNotes(): Promise<Recipe[]> {
+export async function fetchRecipes(): Promise<Recipe[]> {
     const response = await fetchData("/api/recipes", { method: "GET" });
    return response.json();
 }
@@ -24,8 +24,8 @@ export interface RecipeInput {
     average_rating: number,     
 }
 
-export async function createNote(note: RecipeInput): Promise<Recipe> {
-    const response = await fetchData("/api/recipe", 
+export async function createRecipe(note: RecipeInput): Promise<Recipe> {
+    const response = await fetchData("/api/recipes", 
     {
         method: "POST",
         headers: {

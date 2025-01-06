@@ -4,14 +4,17 @@ import Recipe from './components/recipes';
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from "./styles/RecipesPage.module.css";
 import * as RecipesApi from "./network/recipes_api";
+import AddRecipeDialog from './components/AddRecipeDialog';
 
 function App() {
   const [recipes, setRecipes] = useState<RecipeModel[]>([]);
 
+  const [showAddRecipeDialog, setShowAddRecipeDialog] = useState(true);
+
   useEffect(() => {
     async function loadRecipes() {
       try {
-        const recipes = await RecipesApi.fetchNotes();
+        const recipes = await RecipesApi.fetchRecipes();
         setRecipes(recipes);
       } catch (error) {
         console.log(error);
@@ -30,6 +33,10 @@ function App() {
         </Col>
       ))}
       </Row>
+      {showAddRecipeDialog &&
+        <AddRecipeDialog />
+      }
+
     </Container>
   );
 }
